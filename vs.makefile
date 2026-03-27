@@ -16,6 +16,7 @@ endif
 install:
 	pip3 install --no-deps -e .
 	pip3 install --upgrade "transformers<5.0"
+	echo "You might want to login wandb"
 
 dl-minimal:
 	hf download Qwen/Qwen2.5-0.5B-Instruct --local-dir $(HOME)/models/Qwen/Qwen2.5-0.5B-Instruct
@@ -46,7 +47,7 @@ ppo-qwen2.5-0.5b-gsm8k:
 		trainer.val_before_train=False \
 		trainer.n_gpus_per_node=1 \
 		trainer.nnodes=1 \
-		trainer.save_freq=10 \
+		trainer.save_freq=50 \
 		trainer.test_freq=10 \
 		trainer.total_epochs=15 \
 		$(wandb_args) \
